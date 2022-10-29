@@ -19,7 +19,8 @@ namespace Bokdol2Studio_ProjectP.Services
         public InformationService()
         {
             this._querymanager = new Method.Querymanager("api.nexon.co.kr");
-            this._connection = this._querymanager.ConnectSQL("localhost", "fifaonline", "root", "KeonhoLee");
+            Server_Settings settings = setSettings("Settings.json");
+            this._connection = this._querymanager.ConnectSQL(settings.sql_ip, settings.sql_database, settings.sql_name, settings.sql_password);
         }
 
         public async Task<object> getUser(string username)
@@ -33,7 +34,23 @@ namespace Bokdol2Studio_ProjectP.Services
                 return await response.Content.ReadFromJsonAsync<fifa_error>(settings);
         }
 
+        public Server_Settings setSettings(string path)
+        {
+            if(File.Exists(path))
+            {
+                Stream SettingsStream = File.OpenRead(path);
 
+                return JsonSerializer.Deserialize<Server_Settings>(SettingsStream);
+            }
+            else
+            {
+                Server_Settings settings = new Server_Settings() { sql_ip="localhost", sql_name="root", sql_password="1234", sql_database="default"};
+
+                File.WriteAllText("Settings.json", JsonSerializer.Serialize(settings));
+
+                return settings;
+            }
+        }
 
         public async Task<object> setUserInfo_DB(string username)
         {

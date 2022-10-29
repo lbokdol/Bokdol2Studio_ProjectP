@@ -8,14 +8,21 @@ namespace Bokdol2Studio_ProjectP.Method
     {
         private string nexonAPIkey = "";
         private Querymanager _querymanager;
+
         public EtcMethod()
         {
             this._querymanager = new Method.Querymanager("api.nexon.co.kr");
+            this.nexonAPIkey = setNexonAPIkey("nexonKey.txt");
         }
 
         public string getNexonAPIkey()
         {
-            return nexonAPIkey;
+            return this.nexonAPIkey;
+        }
+
+        public string setNexonAPIkey(string path)
+        {
+            return File.ReadAllText(path);
         }
 
         public Pass sumPassInformation(Pass dest, Pass source)
