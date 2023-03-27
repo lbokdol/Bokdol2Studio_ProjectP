@@ -14,15 +14,15 @@
 
 ## 4.사용 기술 및 도구
   ### - 언어
-    - C#, HTML
+    C#, HTML
   ### - 프레임워크
-    - .NET6, Vue.js	
+    .NET6, Vue.js	
   ### - 데이터베이스
-    - MariaDB
+    MariaDB
   ### - 개발 도구
-    - VisualStudio 2022 Community
+    VisualStudio 2022 Community
   ### - 통신 도구
-    - REST API
+    REST API
 
 ## 5. 프로젝트 내 맡은 역할
   ### - 프론트엔드, 백엔드
